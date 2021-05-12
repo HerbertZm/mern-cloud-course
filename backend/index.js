@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import app from './server.js';
 // eslint-disable-next-line import/extensions
 import RestaurantsDAO from './dao/restaurantsDAO.js';
+// eslint-disable-next-line import/extensions
+import ReviewDAO from './dao/reviewsDAO.js';
 
 dotenv.config();
 const { MongoClient } = mongodb;
@@ -22,6 +24,7 @@ MongoClient.connect(
   process.exit(1);
 }).then(async (client) => {
   await RestaurantsDAO.injectDB(client);
+  await ReviewDAO.injectDB(client);
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
   });

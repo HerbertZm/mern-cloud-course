@@ -1,8 +1,9 @@
 // eslint-disable-next-line import/extensions
-import ReviewDAO from '../dao/reviewsDAO.js';
+import ReviewsDAO from '../dao/reviewsDAO.js';
 
 export default class ReviewController {
   static async apiPostReview(req, res) {
+    console.log('holi');
     try {
       const { restaurantId } = req.body;
       const review = req.body.text;
@@ -13,7 +14,7 @@ export default class ReviewController {
       const date = new Date();
 
       // eslint-disable-next-line no-unused-vars
-      const reviewResponse = await ReviewDAO.addReview(
+      const reviewResponse = await ReviewsDAO.addReview(
         restaurantId,
         userInfo,
         review,
@@ -33,7 +34,7 @@ export default class ReviewController {
       const user = req.user.user_id;
       const date = new Date();
 
-      const reviewResponse = await ReviewDAO.updateReview(
+      const reviewResponse = await ReviewsDAO.updateReview(
         reviewId,
         user,
         text,
@@ -64,7 +65,7 @@ export default class ReviewController {
       const user = req.body.user_id;
 
       // eslint-disable-next-line no-unused-vars
-      const reviewResponse = await ReviewDAO.deleteReview(
+      const reviewResponse = await ReviewsDAO.deleteReview(
         reviewId,
         user,
       );
